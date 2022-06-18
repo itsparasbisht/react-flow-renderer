@@ -70,9 +70,7 @@ function Graph() {
     (changes) => setEdges((es) => applyEdgeChanges(changes, es)),
     []
   );
-  const onConnect = useCallback((connection) =>
-    setEdges((eds) => addEdge(connection, eds))
-  );
+  const onConnect = (connection) => setEdges((eds) => addEdge(connection, eds));
 
   return (
     <>
