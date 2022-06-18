@@ -17,6 +17,9 @@ function Graph() {
   const [nodes, setNodes] = useState(initialNodes);
   const [edges, setEdges] = useState(initialEdges);
   const [newNode, setNewNode] = useState("");
+  const [nodeId, setNodeId] = useState(1);
+  const [x, setX] = useState(500);
+  const [y, setY] = useState(50);
 
   const onNodesChange = useCallback(
     (changes) => setNodes((ns) => applyNodeChanges(changes, ns)),
@@ -32,7 +35,7 @@ function Graph() {
 
   const addNode = () => {
     const obj = {
-      id: "4",
+      id: nodeId,
       data: { label: newNode },
       style: {
         color: "black",
@@ -41,9 +44,11 @@ function Graph() {
         backgroundColor: "cyan",
         fontFamily: "monospace",
       },
-      position: { x: 550, y: 250 },
+      position: { x: x, y: y },
     };
     setNodes([...nodes, obj]);
+    setNodeId(nodeId + 1);
+    setY(y + 100);
   };
 
   return (
@@ -56,7 +61,6 @@ function Graph() {
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
       >
-        <MiniMap />
         <Controls />
       </ReactFlow>
       <div className={styles.addNodes}>
