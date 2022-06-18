@@ -1,5 +1,6 @@
 import React from "react";
-import ReactFlow from "react-flow-renderer";
+import ReactFlow, { Controls, MiniMap } from "react-flow-renderer";
+import styles from "./graph.module.css";
 
 const nodes = [
   {
@@ -17,11 +18,13 @@ const nodes = [
   {
     id: "2",
     data: {
-      label:
-        "Hello user, Choose something \
-    (1) Go on a ride \
-    (2) Date someone\
-    (3) Go to concert",
+      label: (
+        <ol>
+          <li>go on a ride</li>
+          <li>on a date</li>
+          <li>riding</li>
+        </ol>
+      ),
     },
     style: {
       color: "red",
@@ -40,7 +43,14 @@ const graphStyles = { width: "100%", height: "500px" };
 function Graph() {
   return (
     <>
-      <ReactFlow nodes={nodes} edges={edges} style={graphStyles} />
+      <ReactFlow nodes={nodes} edges={edges} style={graphStyles}>
+        <MiniMap />
+        <Controls />
+      </ReactFlow>
+      <div className={styles.addNodes}>
+        <input type="text" />
+        <button>Add</button>
+      </div>
     </>
   );
 }
