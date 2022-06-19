@@ -1,10 +1,12 @@
 import "./App.css";
 import Graph from "./components/Graph";
+import SubFlow from "./components/SubFlow";
 
 function App() {
   return (
     <div className="App">
-      <Graph />
+      {/* <Graph /> */}
+      <SubFlow />
     </div>
   );
 }

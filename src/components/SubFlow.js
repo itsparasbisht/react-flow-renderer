@@ -7,6 +7,7 @@ import ReactFlow, {
   MiniMap,
 } from "react-flow-renderer";
 import styles from "./graph.module.css";
+import MyModal from "./MyModal";
 
 const initialNodes = [
   {
@@ -72,6 +73,9 @@ function SubFlow() {
   const [x, setX] = useState(500);
   const [y, setY] = useState(50);
 
+  // handle modal
+  const [openModal, setOpenModal] = useState(false);
+
   const onNodesChange = useCallback(
     (changes) => setNodes((ns) => applyNodeChanges(changes, ns)),
     []
@@ -121,13 +125,9 @@ function SubFlow() {
         <Controls />
       </ReactFlow>
       <div className={styles.addNodes}>
-        <input
-          value={newNode}
-          onChange={(e) => setNewNode(e.target.value)}
-          type="text"
-        />
-        <button onClick={addNode}>add</button>
+        <button onClick={() => setOpenModal(true)}>add</button>
       </div>
+      <MyModal handler={{ open: openModal, close: setOpenModal }} />
     </>
   );
 }
