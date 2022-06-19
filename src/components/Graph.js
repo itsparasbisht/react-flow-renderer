@@ -35,13 +35,13 @@ function Graph() {
 
   const addNode = () => {
     const obj = {
-      id: nodeId,
+      id: '"' + nodeId + '"',
       data: { label: newNode },
       style: {
         color: "black",
         fontSize: "15px",
         fontWeight: "bold",
-        backgroundColor: "cyan",
+        backgroundColor: "white",
         fontFamily: "monospace",
       },
       position: { x: x, y: y },
