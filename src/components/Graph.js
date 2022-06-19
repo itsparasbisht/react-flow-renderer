@@ -33,9 +33,13 @@ function Graph() {
 
   const onConnect = (connection) => setEdges((eds) => addEdge(connection, eds));
 
+  console.log(nodes);
+  console.log(edges);
+
   const addNode = () => {
+    setNewNode("");
     const obj = {
-      id: '"' + nodeId + '"',
+      id: nodeId.toString(),
       data: { label: newNode },
       style: {
         color: "black",
@@ -54,6 +58,7 @@ function Graph() {
   return (
     <>
       <ReactFlow
+        className={styles.flowDiv}
         nodes={nodes}
         edges={edges}
         style={graphStyles}
