@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Button, Stack, TextField } from "@mui/material";
 import styles from "./myModal.module.css";
+import { useSelector } from "react-redux";
 
 const style = {
   position: "absolute",
@@ -18,6 +19,9 @@ const style = {
 };
 
 export default function MyModal({ handler }) {
+  const node = useSelector((state) => state.node.nodeId);
+
+  console.log(node);
   return (
     <div>
       <Modal
