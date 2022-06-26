@@ -4,8 +4,9 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Button, Stack, TextField } from "@mui/material";
 import styles from "./myModal.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { addNode } from "../features/node/nodeSlice";
 
 const style = {
   position: "absolute",
@@ -24,20 +25,22 @@ export default function MyModal({ handler }) {
 
   const [nodeLabel, setNodeLabel] = useState("");
 
+  const dispatch = useDispatch();
+
   const handleAddNode = () => {
     const newNode = {
-      id: nodes.nextId,
+      id: nodes.nextId.toString(),
       type: "input",
       data: { label: nodeLabel },
       position: { x: nodes.nextX, y: nodes.nextY },
-      className: "light",
     };
+
+    dispatch(addNode({ newNode }));
 
     // close the modal
     handler.close(false);
   };
 
-  console.log(nodes);
   return (
     <div>
       <Modal

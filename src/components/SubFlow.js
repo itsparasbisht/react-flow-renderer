@@ -69,11 +69,9 @@ const graphStyles = { width: "100%", height: "500px" };
 function SubFlow() {
   const nodeSlice = useSelector((state) => state.node);
   const [nodes, setNodes] = useState(nodeSlice.nodes);
+  console.log(nodes);
+
   const [edges, setEdges] = useState(initialEdges);
-  const [newNode, setNewNode] = useState("");
-  const [nodeId, setNodeId] = useState(1);
-  const [x, setX] = useState(500);
-  const [y, setY] = useState(50);
 
   // handle modal
   const [openModal, setOpenModal] = useState(false);
@@ -89,28 +87,6 @@ function SubFlow() {
   );
 
   const onConnect = (connection) => setEdges((eds) => addEdge(connection, eds));
-
-  console.log(nodes);
-  console.log(edges);
-
-  const addNode = () => {
-    setNewNode("");
-    const obj = {
-      id: nodeId.toString(),
-      data: { label: newNode },
-      style: {
-        color: "black",
-        fontSize: "15px",
-        fontWeight: "bold",
-        backgroundColor: "white",
-        fontFamily: "monospace",
-      },
-      position: { x: x, y: y },
-    };
-    setNodes([...nodes, obj]);
-    setNodeId(nodeId + 1);
-    setY(y + 100);
-  };
 
   return (
     <>
