@@ -6,6 +6,7 @@ import ReactFlow, {
   Controls,
   MiniMap,
 } from "react-flow-renderer";
+import { useSelector } from "react-redux";
 import styles from "./graph.module.css";
 import MyModal from "./MyModal";
 
@@ -66,7 +67,8 @@ const initialEdges = [];
 const graphStyles = { width: "100%", height: "500px" };
 
 function SubFlow() {
-  const [nodes, setNodes] = useState(initialNodes);
+  const nodeSlice = useSelector((state) => state.node);
+  const [nodes, setNodes] = useState(nodeSlice.nodes);
   const [edges, setEdges] = useState(initialEdges);
   const [newNode, setNewNode] = useState("");
   const [nodeId, setNodeId] = useState(1);
