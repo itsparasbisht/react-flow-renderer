@@ -7,6 +7,7 @@ import styles from "./myModal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { addNode } from "../features/node/nodeSlice";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -26,6 +27,7 @@ export default function MyModal({ handler }) {
   const [nodeLabel, setNodeLabel] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleAddNode = () => {
     const newNode = {
@@ -39,6 +41,7 @@ export default function MyModal({ handler }) {
 
     // close the modal
     handler.close(false);
+    navigate("/added");
   };
 
   return (

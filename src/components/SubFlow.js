@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ReactFlow, {
   addEdge,
   applyEdgeChanges,
@@ -70,6 +70,10 @@ function SubFlow() {
   const nodeSlice = useSelector((state) => state.node);
   const [nodes, setNodes] = useState(nodeSlice.nodes);
   console.log(nodes);
+
+  useEffect(() => {
+    setNodes(nodeSlice.nodes);
+  }, [nodeSlice]);
 
   const [edges, setEdges] = useState(initialEdges);
 
