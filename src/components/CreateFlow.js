@@ -12,8 +12,8 @@ import MyModal from "./MyModal";
 import styles from "./createFlow.module.css";
 
 const initialEdges = [];
-
 const graphStyles = { width: "100%", height: "80vh" };
+let debounceHandler = null;
 
 function CreateFlow() {
   const nodeSlice = useSelector((state) => state.node);
@@ -28,7 +28,10 @@ function CreateFlow() {
   }, [nodeSlice]);
 
   useEffect(() => {
-    nodes.length > 1 && dispatch(onDrag({ nodesArray: nodes }));
+    clearTimeout(debounceHandler);
+    debounceHandler = setTimeout(() => {
+      nodes.length > 1 && dispatch(onDrag({ nodesArray: nodes }));
+    }, 2000);
   }, [nodes]);
 
   const [edges, setEdges] = useState(initialEdges);
