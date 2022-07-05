@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { addNode } from "../features/nodes/nodeSlice";
 import { useNavigate } from "react-router-dom";
-// import AddIcon from "@mui/icons-material/Add";
+import addIcon from "../assets/add.png";
 import colorsArray from "../resources/colorsArray";
 
 const alphaArr = [
@@ -138,7 +138,7 @@ export default function MyModal({ handler }) {
               />
             ))}
             <div className={styles.addSubNodes} onClick={handleAddSubNode}>
-              {/* <AddIcon className={styles.addIcon} /> */}+
+              <img src={addIcon} alt="" />
             </div>
           </div>
           <button className={styles.addNode} onClick={handleAddNode}>

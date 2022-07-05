@@ -6,11 +6,9 @@ import ReactFlow, {
   Controls,
   MiniMap,
 } from "react-flow-renderer";
-
 import { useDispatch, useSelector } from "react-redux";
 import { addNode, onDrag } from "../features/nodes/nodeSlice";
 import MyModal from "./MyModal";
-
 import styles from "./createFlow.module.css";
 
 const initialEdges = [];
