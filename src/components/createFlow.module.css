@@ -1,0 +1,67 @@
+.flowDiv{
+    box-shadow: 0px 4px 5px rgb(195, 195, 195);
+    overflow: auto;
+    margin-top: -5%;
+}
+.addNodes{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.addNodes input{
+    width: 500px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    font-size: 21px;
+    font-weight: 500;
+    font-family: monospace;
+    border: 2px solid black;
+    outline: none;
+}
+.addNodes button{
+    margin-top: 10px;
+    border: none;
+    padding: 3px;
+    font-weight: 600;
+    width: 100px;
+    font-size: 18px;
+    background-color: #554DDE;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.initialAddNodes{
+    margin-top: -50px;
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.initialAddRow{
+    padding: 30px;
+    width: 50%;
+    border-radius: 20px;
+    border: 4px solid black;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.initialAddRow button {
+    margin-top: 10px;
+    border: none;
+    padding: 3px;
+    font-weight: 600;
+    width: 100px;
+    font-size: 18px;
+    background-color: #554DDE;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}

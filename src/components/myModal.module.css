@@ -1,8 +1,96 @@
-.subNodesContainer{
-    margin-top: 10px;
-    height: 200px;
+.container{
+    background-color: #ffffff;
+    width: 800px;
+    height: 400px;
+    margin: 9% auto;
+    outline: none;
+    border-radius: 15px;
+    padding: 25px 30px;
+    box-shadow: 0px 5px 5px black;
+}
+label{
+    font-size: 18px;
+    font-weight: 600;
+}
+.parentNode{
+    margin-top: 5px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 5px 10px;
+    border: 2px solid black;
+    border-radius: 7px;
+    outline: none;
+    color: #554DDE;
+}
+.dividerContainer{
+    margin-top: 15px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+}
+.dividerContainer div{
+    width: 30%;
+    height: 2px;
+    background-color: #F44E77;
+}
+.dividerContainer span{
+    padding: 10px;
+    font-size: 13px;
+    color: #000000;
+    font-weight: 600;
+}
+.subNodesContainer{
+    width: 90%;
+    margin: 0px auto;
+    height: 140px;
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+.subNodesContainer textarea{
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    display: block !important;
+    padding: 5px 9px;
+    font-size: 13px;
+    background-color: #F44E77;
+    color: white;
+}
+.subNode{
+    margin-right: 20px;
+    max-width: 140px;
+    min-width: 140px;
+    height: 100px;
+    border: 2px solid #F44E77 !important;
+}
+.addSubNodes{
+    min-width: 150px;
+    max-width: 150px;
+    height: 100px;
+    background-color: #000000;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.addNode{
+    display: block;
+    margin: 20px auto;
+    border: none;
+    width: 50%;
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 7px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+.addIcon{
+    color: white;
+    font-size: 70px !important;
 }

@@ -1,16 +1,13 @@
 import "./App.css";
-import SubFlow from "./components/SubFlow";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
+import CreateFlow from "./components/CreateFlow";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home />} />
-          <Route path="/subflow" element={<SubFlow />} />
-          <Route path="/added" element={<SubFlow />} />
+          <Route path="/" element={<CreateFlow />} />
         </Routes>
       </BrowserRouter>
     </>

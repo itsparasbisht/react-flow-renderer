@@ -1,47 +1,88 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Button, Stack, TextField } from "@mui/material";
 import styles from "./myModal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { addNode } from "../features/node/nodeSlice";
+import { addNode } from "../features/nodes/nodeSlice";
 import { useNavigate } from "react-router-dom";
+// import AddIcon from "@mui/icons-material/Add";
+import colorsArray from "../resources/colorsArray";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "60%",
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+const alphaArr = [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
+];
 
 export default function MyModal({ handler }) {
   const nodes = useSelector((state) => state.node);
 
   const [nodeLabel, setNodeLabel] = useState("");
+  const [subNodes, setSubNodes] = useState([]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  function invertHex(hex) {
+    return (Number(`0x1${hex}`) ^ 0xffffff)
+      .toString(16)
+      .substr(1)
+      .toUpperCase();
+  }
+
   const handleAddNode = () => {
     const newNode = {
       id: nodes.nextId.toString(),
-      type: "input",
       data: { label: nodeLabel },
       position: { x: nodes.nextX, y: nodes.nextY },
+      style: {
+        backgroundColor: colorsArray[nodes.nextColor],
+        fontWeight: 500,
+        fontSize: "17px",
+        padding: "5px",
+        border: "none",
+        color: "#" + invertHex(colorsArray[nodes.nextColor].slice(1)),
+        width: "fit-content",
+      },
     };
-
     dispatch(addNode({ newNode }));
 
+    subNodes.length > 0 &&
+      subNodes.forEach((node) => {
+        let newNode = node;
+        dispatch(addNode({ newNode }));
+      });
+
     // close the modal
+    setSubNodes([]);
     handler.close(false);
-    navigate("/added");
+  };
+
+  const handleAddSubNode = () => {
+    setSubNodes([...subNodes, {}]);
   };
 
   return (
@@ -52,53 +93,58 @@ export default function MyModal({ handler }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <TextField
-            fullWidth
-            id="outlined-basic"
-            label="Enter label for the node"
-            variant="outlined"
-            value={nodeLabel}
+        <div className={styles.container}>
+          <label htmlFor="parentNode">Enter Node Label :</label>
+          <input
+            className={styles.parentNode}
+            type="text"
+            name="parentNode"
+            id="parentNode"
+            placeholder="start typing here..."
             onChange={(e) => setNodeLabel(e.target.value)}
           />
-          <Typography variant="subtitle2" textAlign={"center"} mt={2}>
-            You can add sub nodes to your current node
-          </Typography>
-          <div className={styles.subNodesContainer}>
-            <TextField
-              size="small"
-              id="outlined-basic"
-              label="sub node 1"
-              variant="outlined"
-            />
-            <TextField
-              size="small"
-              id="outlined-basic"
-              label="sub node 2"
-              variant="outlined"
-            />
-            <TextField
-              size="small"
-              id="outlined-basic"
-              label="sub node 3"
-              variant="outlined"
-            />
+          <div className={styles.dividerContainer}>
+            <div></div>
+            <span>add sub nodes for your current node</span>
+            <div></div>
           </div>
-          <Stack alignItems={"center"}>
-            <Button
-              sx={{
-                width: "200px",
-                marginTop: "10px",
-                backgroundColor: "black",
-              }}
-              disableElevation
-              variant="contained"
-              onClick={handleAddNode}
-            >
-              Submit
-            </Button>
-          </Stack>
-        </Box>
+          <div className={styles.subNodesContainer}>
+            {subNodes.map((subNode, i) => (
+              <textarea
+                placeholder="sub node label..."
+                className={styles.subNode}
+                onChange={(e) => {
+                  let newSubNode = {
+                    id: nodes.nextId.toString() + alphaArr[i],
+                    data: { label: e.target.value },
+                    position: { x: nodes.nextX, y: nodes.nextY },
+                    parentNode: nodes.nextId.toString(),
+                    style: {
+                      backgroundColor: colorsArray[nodes.nextColor],
+                      fontSize: "16px",
+                      padding: "3px",
+                      border: "none",
+                      color:
+                        "#" + invertHex(colorsArray[nodes.nextColor].slice(1)),
+                    },
+                  };
+
+                  let items = subNodes;
+                  let item = { ...items[i] };
+                  item = newSubNode;
+                  items[i] = item;
+                  setSubNodes(items);
+                }}
+              />
+            ))}
+            <div className={styles.addSubNodes} onClick={handleAddSubNode}>
+              {/* <AddIcon className={styles.addIcon} /> */}+
+            </div>
+          </div>
+          <button className={styles.addNode} onClick={handleAddNode}>
+            Add Node
+          </button>
+        </div>
       </Modal>
     </div>
   );
