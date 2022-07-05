@@ -1,7 +1,6 @@
 .flowDiv{
     box-shadow: 0px 4px 5px rgb(195, 195, 195);
     overflow: auto;
-    margin-top: -5%;
 }
 .addNodes{
     width: 100%;
