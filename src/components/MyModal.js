@@ -66,14 +66,17 @@ export default function MyModal({ handler }) {
         border: "none",
         color: "#" + invertHex(colorsArray[nodes.nextColor].slice(1)),
         width: "fit-content",
+        maxWidth: "300px",
       },
     };
     dispatch(addNode({ newNode }));
 
     subNodes.length > 0 &&
       subNodes.forEach((node) => {
-        let newNode = node;
-        dispatch(addNode({ newNode }));
+        if (Object.keys(node).length > 0) {
+          let newNode = node;
+          dispatch(addNode({ newNode }));
+        }
       });
 
     // close the modal
