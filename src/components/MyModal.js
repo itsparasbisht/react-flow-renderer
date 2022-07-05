@@ -77,6 +77,7 @@ export default function MyModal({ handler }) {
       });
 
     // close the modal
+    setNodeLabel("");
     setSubNodes([]);
     handler.close(false);
   };
