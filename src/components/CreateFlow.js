@@ -45,12 +45,14 @@ function CreateFlow() {
     []
   );
 
-  const onEdgesChange = useCallback(
-    (changes) => setEdges((es) => applyEdgeChanges(changes, es)),
-    []
-  );
+  const onEdgesChange = useCallback((changes) => {
+    setEdges((es) => applyEdgeChanges(changes, es));
+  }, []);
 
-  const onConnect = (connection) => setEdges((eds) => addEdge(connection, eds));
+  const onConnect = (connection) => {
+    connection.animated = true;
+    setEdges((eds) => addEdge(connection, eds));
+  };
 
   return (
     <>
