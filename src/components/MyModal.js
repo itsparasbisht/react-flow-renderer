@@ -7,6 +7,7 @@ import { addNode } from "../features/nodes/nodeSlice";
 import { useNavigate } from "react-router-dom";
 import addIcon from "../assets/add.png";
 import colorsArray from "../resources/colorsArray";
+const Color = require("color");
 
 const alphaArr = [
   "a",
@@ -46,12 +47,11 @@ export default function MyModal({ handler }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  function invertHex(hex) {
-    return (Number(`0x1${hex}`) ^ 0xffffff)
-      .toString(16)
-      .substr(1)
-      .toUpperCase();
-  }
+  const color = Color(colorsArray[nodes.nextColor]);
+  color.hex();
+  // const hslColor = color.rotate(180);
+  const hslColor = color.darken(0.7);
+  const textColor = hslColor.hex();
 
   const handleAddNode = () => {
     const newNode = {
@@ -63,8 +63,8 @@ export default function MyModal({ handler }) {
         fontWeight: 500,
         fontSize: "17px",
         padding: "5px",
-        border: "none",
-        color: "#" + invertHex(colorsArray[nodes.nextColor].slice(1)),
+        border: `3px solid ${textColor}`,
+        color: textColor,
         width: "fit-content",
         maxWidth: "300px",
       },
@@ -127,9 +127,8 @@ export default function MyModal({ handler }) {
                       backgroundColor: colorsArray[nodes.nextColor],
                       fontSize: "16px",
                       padding: "3px",
-                      border: "none",
-                      color:
-                        "#" + invertHex(colorsArray[nodes.nextColor].slice(1)),
+                      border: `1px solid ${textColor}`,
+                      color: textColor,
                     },
                   };
 
